@@ -1,0 +1,83 @@
+{
+  "name": "typescript-package-starter",
+  "version": "0.0.0",
+  "description": "",
+  "author": "",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "",
+  "files": [
+    "./dist"
+  ],
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "default": "./dist/index.modern.js"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.module.js",
+  "unpkg": "./dist/index.umd.js",
+  "bin": "./dist/cli.module.js",
+  "scripts": {
+    "dev": "microbundle watch src/{index,cli}.ts -f esm",
+    "build": "yarn link:self && rm -rf dist && microbundle src/{index,cli}.ts && yalc publish",
+    "lint": "eslint --fix \"src/**/*.+(ts|tsx|js|jsx)\" && prettier --write .",
+    "test": "vitest --passWithNoTests",
+    "test:ci": "vitest run --coverage --passWithNoTests",
+    "type-check": "tsc",
+    "release": "release-it",
+    "commit": "commit-it",
+    "cli": "yarn build -f modern && node dist/cli.modern.js",
+    "link:self": "yalc link"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "🔖 | v${version}"
+    },
+    "github": {
+      "release": true
+    },
+    "npm": {
+      "publish": false
+    }
+  },
+  "lint-staged": {
+    "**/*.{ts,js,jsx,tsx}": "eslint --fix",
+    "*": "prettier --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "devDependencies": {
+    "@types/node": "20.3.2",
+    "@typescript-eslint/eslint-plugin": "5.60.1",
+    "@typescript-eslint/parser": "5.60.1",
+    "@vitest/coverage-v8": "0.32.2",
+    "commit-it": "0.0.11",
+    "eslint": "8.43.0",
+    "eslint-config-standard": "17.1.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-n": "16.0.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "6.1.1",
+    "eslint-plugin-typescript-sort-keys": "2.3.0",
+    "eslint-plugin-unused-imports": "2.0.0",
+    "husky": "8.0.3",
+    "lint-staged": "13.2.3",
+    "microbundle": "0.15.1",
+    "prettier": "2.8.8",
+    "release-it": "15.11.0",
+    "typescript": "5.1.6",
+    "vitest": "0.32.2",
+    "yalc": "1.0.0-pre.53"
+  },
+  "dependencies": {},
+  "resolutions": {}
+}
