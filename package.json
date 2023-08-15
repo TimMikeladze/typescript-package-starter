@@ -33,7 +33,7 @@
     "release": "release-it",
     "commit": "commit-it",
     "cli": "yarn build -f modern && node dist/cli.modern.js",
-    "link:self": "yalc link"
+    "link:self": "yalc link && yarn link"
   },
   "release-it": {
     "git": {
