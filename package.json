@@ -83,5 +83,7 @@
     "yalc": "1.0.0-pre.53"
   },
   "dependencies": {},
-  "resolutions": {}
+  "resolutions": {
+    "semver": ">=6.3.1"
+  }
 }
